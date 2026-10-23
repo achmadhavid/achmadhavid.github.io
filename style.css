@@ -37,11 +37,17 @@ header.nav {
 .nav ul a:hover { color: var(--accent); }
 
 /* Hero */
-.hero { padding: 7rem 0 5rem; }
+.hero {
+  padding: 6rem 0 5rem;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 4rem;
+  align-items: center;
+}
 .hero h1 {
   font-family: var(--serif);
   font-weight: 500;
-  font-size: clamp(3rem, 9vw, 6rem);
+  font-size: clamp(2.8rem, 7vw, 4.75rem);
   line-height: 1.02;
   letter-spacing: -0.01em;
   animation: rise 0.9s ease both;
@@ -63,6 +69,41 @@ header.nav {
 }
 .btn:hover, .btn.solid { background: var(--accent); color: var(--bg); }
 .btn.solid:hover { background: transparent; color: var(--accent); }
+
+/* CV download */
+.cv {
+  margin-top: 2rem;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.25rem;
+  font-size: 0.92rem;
+}
+.cv span { color: var(--muted); }
+.cv a {
+  color: var(--text);
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.cv a:hover { color: var(--accent); }
+
+/* Portrait */
+.portrait { position: relative; isolation: isolate; animation: rise 0.9s ease 0.15s both; }
+.portrait::before {
+  content: "";
+  position: absolute; inset: 0;
+  transform: translate(14px, 14px);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  z-index: -1;
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+  background: #fff;
+}
 
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
@@ -134,12 +175,13 @@ footer { padding: 2rem 0 3rem; color: var(--muted); font-size: 0.85rem; border-t
 @media (max-width: 640px) {
   .nav ul { gap: 1rem; }
   .nav ul a { font-size: 0.85rem; }
-  .hero { padding: 4rem 0 3rem; }
+  .hero { padding: 3rem 0 3rem; grid-template-columns: 1fr; gap: 2.5rem; }
+  .portrait { order: -1; width: 220px; margin-right: 14px; }
   .project { grid-template-columns: 1fr; }
   .project .link { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 0.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero h1 { animation: none; }
+  .hero h1, .portrait { animation: none; }
 }
